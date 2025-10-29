@@ -17,14 +17,14 @@ export type State = {
   prevLocationsURL: string,
 };
 
-export function initState(): State {
+export function initState(cacheInterval: number): State {
   const rl = createInterface({
     input,
     output,
     prompt: "Pokedex > ",
   });
   const commands = getCommands();
-  const pokeAPI = new PokeAPI();
+  const pokeAPI = new PokeAPI(cacheInterval);
   const firstLocationsURL = `${pokeAPI.getBaseURL()}/location-area/?limit=${pokeAPI.getPaginationSize()}`;
   return {
     rl: rl,

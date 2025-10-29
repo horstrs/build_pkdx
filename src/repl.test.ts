@@ -1,5 +1,4 @@
-import { access } from "fs";
-import { cleanInput } from "./repl";
+import { cleanInput } from "./repl.js";
 import { describe, expect, test } from "vitest";
 
 describe.each([
