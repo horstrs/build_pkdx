@@ -35,29 +35,61 @@ export type ShallowLocations = {
   count: number,
   next: string,
   previous: string,
-  results: Location[],
+  results: {
+    name: string;
+    url: string;
+  }[];
 };
 
 export type Location = {
-  name: string,
-  url: string,
+  encounter_method_rates: {
+    encounter_method: {
+      name: string;
+      url: string;
+    };
+    version_details: {
+      rate: number;
+      version: {
+        name: string;
+        url: string;
+      };
+    }[];
+  }[];
+  game_index: number;
+  id: number;
+  location: {
+    name: string;
+    url: string;
+  };
+  name: string;
+  names: {
+    language: {
+      name: string;
+      url: string;
+    };
+    name: string;
+  }[];
+  pokemon_encounters: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
+    version_details: {
+      encounter_details: {
+        chance: number;
+        condition_values: any[];
+        max_level: number;
+        method: {
+          name: string;
+          url: string;
+        };
+        min_level: number;
+      }[];
+      max_chance: number;
+      version: {
+        name: string;
+        url: string;
+      };
+    }[];
+  }[];
 };
-
-/*export type ShallowLocations = {
-  id: number,
-  name: string,
-  game_index: string,
-  //encounter_method_rates: 
-  location: Location,
-  names: string[],
-  //pokemon_encounters: 
-};
-
-/*export type Location = {
-  id: number,
-  name: string,
-  region: string,
-  names: string[],
-  //game_indices: string[],
-  areas: ShallowLocations[]
-};*/
