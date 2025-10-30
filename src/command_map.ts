@@ -11,7 +11,6 @@ export async function commandMap(state: State): Promise<void>{
     console.log(location.name);
   };
   console.log();
-  state.rl.prompt();
 };
 
 export async function commandMapBack(state: State): Promise<void>{
@@ -25,5 +24,4 @@ export async function commandMapBack(state: State): Promise<void>{
     console.log(location.name);
   };
   console.log();
-  state.rl.prompt();
 };

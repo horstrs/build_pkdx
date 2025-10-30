@@ -21,7 +21,7 @@ async function processPrompt(state: State, input: string): Promise<void> {
     };
     
     try {
-      await command.callback(state);
+      await command.callback(state, userInput[1]);
     } catch (e) {
       console.log((e as Error).message);
     }
