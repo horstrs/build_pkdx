@@ -16,7 +16,7 @@ export class Cache {
   #reap() {
     this.#cache.forEach((entry, key) => {
       if (Date.now() - entry.createdAt > this.#interval){
-        this.#cache.delete(key)
+        this.#cache.delete(key);
       }
     })
   }

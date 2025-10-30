@@ -9,9 +9,9 @@ export async function commandMap(state: State): Promise<void>{
   state.prevLocationsURL = locations.previous;
   for(const location of locations.results){
     console.log(location.name);
-  };
+  }
   console.log();
-};
+}
 
 export async function commandMapBack(state: State): Promise<void>{
   if (!state.prevLocationsURL) {
@@ -22,6 +22,6 @@ export async function commandMapBack(state: State): Promise<void>{
   state.prevLocationsURL = locations.previous;
   for(const location of locations.results){
     console.log(location.name);
-  };
+  }
   console.log();
-};
+}

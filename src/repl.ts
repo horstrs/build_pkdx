@@ -18,7 +18,7 @@ async function processPrompt(state: State, input: string): Promise<void> {
       console.log(`Unknown command: ${userInput[0]}. Type "help" for a list of commands.`);
       state.rl.prompt();
       return;
-    };
+    }
     
     try {
       await command.callback(state, userInput[1]);
@@ -26,7 +26,7 @@ async function processPrompt(state: State, input: string): Promise<void> {
       console.log((e as Error).message);
     }
     state.rl.prompt();
-  };
+  }
 }
 
 export function cleanInput(input: string): string[] {
