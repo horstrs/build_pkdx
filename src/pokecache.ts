@@ -32,13 +32,6 @@ export class Cache {
     this.#cache.set(key, newEntry);
   }
 
-  /*get<T>(key: string) {
-    if (this.#cache.has(key)){
-      return this.#cache.get(key)?.val as T;
-    };
-    return undefined;
-  }*/
-
   get<T>(key: string) {
     const entry = this.#cache.get(key);
     if (entry !== undefined) {

@@ -1,4 +1,5 @@
 import { Cache } from "./pokecache.js";
+import { type Pokemon } from "./pokeapi_types.js";
 
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
@@ -21,7 +22,7 @@ export class PokeAPI {
         if(!response.ok){
           throw new Error(`${response.status} ${response.statusText}`);
         };
-        this.cache.add(pageURL, response.json());
+        this.cache.add(pageURL, await response.json());
       } catch (e) {
         throw new Error(`Error fetching locations: ${(e as Error).message}`);
       }
@@ -37,13 +38,29 @@ export class PokeAPI {
         if (!response.ok){
           throw new Error(`${response.status} ${response.statusText}`);
         }
-        this.cache.add(locationURL, response.json());
+        this.cache.add(locationURL, await response.json());
       } catch (e) {
         throw new Error(`Error fetching location "${locationName}": ${(e as Error).message}`);
         };
     };
     return this.cache.get(locationURL) as Location;
   };
+
+  async fetchPokemon(pokemonName: string): Promise<Pokemon> {
+    const pokemonURL = `${PokeAPI.baseURL}/pokemon/${pokemonName}`;
+    if(!this.cache.get(pokemonURL)){
+      try{
+        const response = await fetch(pokemonURL);
+        if (!response.ok){
+          throw new Error(`${response.status} ${response.statusText}`);
+        };
+        this.cache.add(pokemonURL, await response.json())
+      } catch (e) {
+        throw new Error(`Error fetching pokemon "${pokemonName}": ${(e as Error).message}`);
+      };
+    }
+    return this.cache.get(pokemonURL) as Pokemon;
+  }
   
   getBaseURL(): string { return PokeAPI.baseURL };
   getPaginationSize(): number { return PokeAPI.paginationSize };
